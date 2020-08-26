@@ -1,21 +1,7 @@
-/*
-// | MobileCms 移动应用软件后台管理系统
-// +----------------------------------------------------------------------
-// | provide by ：59miao.com
-// 
-// +----------------------------------------------------------------------
-// | Author: htzhanglong@foxmail.com
-// +----------------------------------------------------------------------
-*/
-@CHARSET "UTF-8";
-body {
-	background:#01458E;
-}
 #login {
 	width:740px;
 	height:300px;
-	background:url(../images/loginbg.jpg) no-repeat left center;
-	/*background:#EDEFFC;*/
+	background:url(/public/admin/images/loginbg.jpg) no-repeat left center;
 	margin:120px auto 0 auto;
 }
 #login dl{
@@ -37,14 +23,17 @@ body {
 	line-height:30px;
 }
 #login dl dd input.submit {
-	background: url("../images/login_btn.jpg") no-repeat center center;
-    border:none;
-    margin: 10px;
-	margin-left:90px;
-    padding: 2px 8px 0;
-	cursor:pointer;
-	width:123px;
-	height:29px;
+	border:none;
+	resize: none;
+	margin: 10px;
+	margin-left: 90px;
+	padding: 10px 28px;
+	cursor: pointer;
+	background-color: #0170fe;
+	color: #fff;
+	border-radius: 4px;
+	text-align: center;
+	min-width: 120px;
 }
 #login dl dd.code {
 	padding:0 0 0 72px;
@@ -75,4 +64,5 @@ body {
 	padding-top:10px;
 	color:#01458e;
 	font-weight:bold;
+	padding-left: 20px;
 }
