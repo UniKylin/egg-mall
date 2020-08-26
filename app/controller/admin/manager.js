@@ -5,7 +5,7 @@ const Controller = require('egg').Controller;
 class ManagerController extends Controller {
   async index() {
     await this.ctx.render(
-      `admin/manager/index.html`,
+      `admin/manager/index`,
       {
         username: 'Brendan Eich',
       }
@@ -13,11 +13,11 @@ class ManagerController extends Controller {
   }
 
   async add() {
-    this.ctx.body = `<h1>manager add....</h1>`
+    await this.ctx.render(`admin/manager/add`)
   }
 
   async edit() {
-    this.ctx.body = `<h1>manager edit....</h1>`
+    await this.ctx.render(`admin/manager/edit`)
   }
 
   async delete() {
