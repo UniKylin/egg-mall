@@ -2,8 +2,11 @@ const url = require('url')
 
 module.exports = options => {
   return async function adminauth(ctx, next) {
-    const { pathname } = url.parse(ctx.request.url)
+    // set csrf token
+    ctx.state.csrf = ctx.csrf
+    console.log(`---> csrf: ${ctx.csrf}`)
 
+    const { pathname } = url.parse(ctx.request.url)
     console.log(`---> ${pathname}`)
 
     if (ctx.session.userInfo) {
