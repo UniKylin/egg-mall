@@ -9,6 +9,7 @@ module.exports = app => {
 
   router.get('/admin/login', controller.admin.login.index)
   router.post('/admin/doLogin', controller.admin.login.doLogin)
+  router.get('/admin/logout', controller.admin.login.logout)
 
   router.get('/admin/code', controller.admin.base.code)
 

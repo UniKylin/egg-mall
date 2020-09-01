@@ -30,7 +30,11 @@ class LoginController extends BaseController {
     } else {
       await this.error('/admin/login', '验证码错误...')
     }
+  }
 
+  async logout() {
+    this.ctx.session.userInfo = null
+    this.ctx.redirect('/admin/login ')
   }
 }
 
