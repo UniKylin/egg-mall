@@ -10,15 +10,23 @@ class LoginController extends BaseController {
 
   async doLogin() {
     console.table(this.ctx.request.body)
-    // await this.error(`/admin/login`)
     const { _csrf, username, password, code } = this.ctx.request.body
     const { code: sessionCode } = this.ctx.session
     const encodePassword = await this.service.tools.encodeMd5(password)
-    console.log(`username---> ${username} ---> ${encodePassword} ---> ${code}`)
-    console.log(`session code: ${sessionCode}`)
 
-    if (code === sessionCode) {
+    if (code.toLowerCase() === sessionCode.toLowerCase()) {
+      const result = await this.ctx.model.Admin.find({
+        username,
+        password: encodePassword,
+      })
+      console.table(result)
 
+      if (result.length > 0) {
+        this.ctx.session.userInfo = result[0]
+        this.ctx.redirect('/admin/manager')
+      } else {
+        await this.error('/admin/login', '用户名或者密码错误...')
+      }
     } else {
       await this.error('/admin/login', '验证码错误...')
     }

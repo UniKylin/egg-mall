@@ -31,10 +31,17 @@ module.exports = appInfo => {
     mapping: {
       '.html': 'ejs',
     },
-  };
+  }
+
+  config.mongoose = {
+    client: {
+      url: 'mongodb://127.0.0.1/eggmall',
+      options: {},
+    }
+  }
 
   return {
     ...config,
     ...userConfig,
-  };
+  }
 };
