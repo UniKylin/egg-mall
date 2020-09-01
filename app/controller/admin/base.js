@@ -26,6 +26,12 @@ class BaseController extends Controller {
     this.ctx.response.type = 'image/svg+xml'
     this.ctx.body = captcha.data
   }
+
+  async delete() {
+    const { id, model } = this.ctx.request.query
+    await this.ctx.model[model].deleteOne({ _id: id })
+    this.ctx.redirect(this.ctx.state.prevPage)
+  }
 }
 
 module.exports = BaseController;

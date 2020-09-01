@@ -35,7 +35,7 @@ class RoleController extends BaseController {
   async doEdit() {
     console.log(this.ctx.request.body)
     const { id, title, description } = this.ctx.request.body
-    const result = await this.ctx.model.Role.updateOne(
+    await this.ctx.model.Role.updateOne(
       { _id: id },
       { title, description },
     )

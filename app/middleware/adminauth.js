@@ -4,7 +4,7 @@ module.exports = options => {
   return async function adminauth(ctx, next) {
     // set csrf token
     ctx.state.csrf = ctx.csrf
-    console.log(`---> csrf: ${ctx.csrf}`)
+    ctx.state.prevPage = ctx.request.headers['referer']
 
     const { pathname } = url.parse(ctx.request.url)
     console.log(`---> ${pathname}`)
