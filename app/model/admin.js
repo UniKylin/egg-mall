@@ -1,6 +1,6 @@
 module.exports = app => {
-  const mongoose = app.mongoose;
-  const Schema = mongoose.Schema;
+  const mongoose = app.mongoose
+  const Schema = mongoose.Schema
 
   const AdminSchema = new Schema({
     username: { type: String  },
@@ -22,7 +22,7 @@ module.exports = app => {
     is_super: {
       type: Number,
     }
-  });
+  })
 
-  return mongoose.model('Admin', AdminSchema, 'admin');
+  return mongoose.model('Admin', AdminSchema, 'admin')
 }
