@@ -9,7 +9,7 @@ class ToolsService extends Service {
    */
   async generateCaptcha() {
     const captcha = svgCaptcha.create({
-      size: 6,
+      size: 4,
       height: 35,
     })
     this.ctx.session.code = captcha.text
