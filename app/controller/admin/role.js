@@ -4,7 +4,9 @@ const BaseController = require('./base')
 
 class RoleController extends BaseController {
   async index() {
-    await this.ctx.render(`admin/role/index`)
+    const list = await this.ctx.model.Role.find()
+    console.log(list)
+    await this.ctx.render(`admin/role/index`, { list })
   }
 
   async add() {
@@ -25,7 +27,19 @@ class RoleController extends BaseController {
   }
 
   async edit() {
-    await this.ctx.render(`admin/role/edit`)
+    const { roleId } = this.ctx.query
+    const role = await this.ctx.model.Role.find({ _id: roleId })
+    await this.ctx.render(`admin/role/edit`, { role: role[0] })
+  }
+
+  async doEdit() {
+    console.log(this.ctx.request.body)
+    const { id, title, description } = this.ctx.request.body
+    const result = await this.ctx.model.Role.updateOne(
+      { _id: id },
+      { title, description },
+    )
+    await this.success('/admin/role', '编辑角色成功')
   }
 
   async delete() {

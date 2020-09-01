@@ -22,5 +22,6 @@ module.exports = app => {
   router.get(`/admin/role/add`, controller.admin.role.add)
   router.post(`/admin/role/doAdd`, controller.admin.role.doAdd)
   router.get(`/admin/role/edit`, controller.admin.role.edit)
+  router.post(`/admin/role/doEdit`, controller.admin.role.doEdit)
   router.get(`/admin/role/delete`, controller.admin.role.delete)
 };
