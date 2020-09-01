@@ -10,7 +10,7 @@ module.exports = options => {
     console.log(`---> ${pathname}`)
 
     if (ctx.session.userInfo) {
-      // todo validate user privilege
+      ctx.state.userInfo = ctx.session.userInfo
       await next()
     } else {
       // exclude not validate privilege page
