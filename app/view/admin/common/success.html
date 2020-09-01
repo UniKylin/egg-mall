@@ -1,20 +1,18 @@
-
-<%- include ./cmn_header.html %>
-
-<meta http-equiv="refresh" content="3;url=<%=redirectUrl%>">
-
-<div class="container-fluid">
-  <div class="row">
-    <%- include ./cmn_menu.html %>
-    <div class="col-sm-10">
-      <div class="alert alert-success">
-        <h2><%=message%></h2>
-        <br />
-        <p>如果您不做出选择，将在 3 秒后跳转到第一个链接地址。</p>
-      </div>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>操作成功</title>
+    <meta http-equiv="refresh" content="3;url=<%=redirectUrl%>">
+    <link rel="stylesheet" href="/public/admin/bootstrap/css/bootstrap.css">
+</head>
+<body>
+	<div class="container" style="margin-top: 100px;width: 600px;">
+    <div class="alert alert-success">
+      <h2><%=message%></h2>
+      <br />
+      <p>如果您不做出选择，将在 3秒后跳转到第一个链接地址。</p>
     </div>
-   </div>
-</div>
-
+	</div>
 </body>
 </html>
