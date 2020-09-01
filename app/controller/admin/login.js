@@ -12,7 +12,17 @@ class LoginController extends BaseController {
     console.table(this.ctx.request.body)
     // await this.error(`/admin/login`)
     const { _csrf, username, password, code } = this.ctx.request.body
-    console.log(`username---> ${username} ---> ${password} ---> ${code}`)
+    const { code: sessionCode } = this.ctx.session
+    const encodePassword = await this.service.tools.encodeMd5(password)
+    console.log(`username---> ${username} ---> ${encodePassword} ---> ${code}`)
+    console.log(`session code: ${sessionCode}`)
+
+    if (code === sessionCode) {
+
+    } else {
+      await this.error('/admin/login', '验证码错误...')
+    }
+
   }
 }
 

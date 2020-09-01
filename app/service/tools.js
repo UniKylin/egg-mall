@@ -2,6 +2,7 @@
 
 const Service = require('egg').Service;
 const svgCaptcha = require('svg-captcha');
+const md5 = require('md5')
 
 class ToolsService extends Service {
   /**
@@ -15,6 +16,10 @@ class ToolsService extends Service {
     this.ctx.session.code = captcha.text
 
     return captcha
+  }
+
+  async encodeMd5(str) {
+    return md5(str)
   }
 }
 
