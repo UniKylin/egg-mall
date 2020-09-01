@@ -1,14 +1,27 @@
 'use strict';
 
-const Controller = require('egg').Controller;
+const BaseController = require('./base')
 
-class RoleController extends Controller {
+class RoleController extends BaseController {
   async index() {
     await this.ctx.render(`admin/role/index`)
   }
 
   async add() {
     await this.ctx.render(`admin/role/add`)
+  }
+
+  async doAdd() {
+    console.log(this.ctx.request.body)
+    const { title, description } = this.ctx.request.body
+
+    const role = this.ctx.model.Role({
+      title, description,
+    })
+    const result = await role.save()
+    console.log(result)
+    // TODO: how to define add role success
+    await this.success('/admin/role', '添加角色成功')
   }
 
   async edit() {
