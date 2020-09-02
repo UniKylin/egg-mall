@@ -21,6 +21,7 @@ module.exports = app => {
 
     is_super: {
       type: Number,
+      default: 0, // 0: 超级管理员 1: 管理员 2: 一般用户
     }
   })
 

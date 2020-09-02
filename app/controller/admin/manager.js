@@ -4,12 +4,18 @@ const BaseController = require('./base')
 
 class ManagerController extends BaseController {
   async index() {
-    await this.ctx.render(
-      `admin/manager/index`,
+    const adminList = await this.ctx.model.Admin.aggregate([
       {
-        username: 'Brendan Eich',
+        $lookup: {
+          from: 'role',
+          localField: 'role_id',
+          foreignField: '_id',
+          as: 'role',
+        }
       }
-    )
+    ])
+    console.log(adminList)
+    await this.ctx.render(`admin/manager/index`, { adminList })
   }
 
   async add() {
