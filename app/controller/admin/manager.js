@@ -54,6 +54,27 @@ class ManagerController extends BaseController {
     })
   }
 
+  async doEdit() {
+    console.log(this.ctx.request.body)
+    const { _id, password, email, mobile, role_id } = this.ctx.request.body
+    if (password) {
+      const encodePassword = await this.ctx.service.tools.encodeMd5(password)
+      await this.ctx.model.Admin.updateOne({ _id }, {
+        email,
+        mobile,
+        role_id,
+        password: encodePassword,
+      })
+    } else {
+      await this.ctx.model.Admin.updateOne({ _id }, {
+        email,
+        mobile,
+        role_id,
+      })
+    }
+    await this.success('/admin/manager', '编辑管理员成功')
+  }
+
   async delete() {
     this.ctx.body = `<h1>manager delete....</h1>`
   }

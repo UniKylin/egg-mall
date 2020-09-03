@@ -10,8 +10,9 @@
 
       <div class="panel-body">
         <div class="table-responsive input-form">
-          <form action="/admin/manager/doAdd" method="post">
+          <form action="/admin/manager/doEdit" method="post">
             <input type="hidden" name="_csrf" value="<%=csrf%>" />
+            <input type="hidden" name="_id" value="<%=admin.id%>" />
             <ul>
               <li>
                 用户名: <input type="text" name="username" readonly value="<%=admin.username%>"/>
