@@ -41,7 +41,17 @@ class ManagerController extends BaseController {
   }
 
   async edit() {
-    await this.ctx.render(`admin/manager/edit`)
+    const { _id } = this.ctx.request.query
+    const adminList = await this.ctx.model.Admin.find({ _id })
+    const roleList = await this.ctx.model.Role.find()
+
+    console.log(adminList[0])
+    console.log(roleList)
+
+    await this.ctx.render(`admin/manager/edit`, {
+      roleList,
+      admin: adminList[0],
+    })
   }
 
   async delete() {
