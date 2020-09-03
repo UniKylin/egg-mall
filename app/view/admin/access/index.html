@@ -74,7 +74,7 @@
                     <td><%= list[i].items[j].description %></td>
                     <td>
                       编辑
-                      <a href='/admin/delete?model=Access&id=list[i]._id'>删除</a>
+                      <a href='/admin/delete?model=Access&id=<%=list[i].items[j]._id%>'>删除</a>
                     </td>
                   </tr>
                 <% } %>
