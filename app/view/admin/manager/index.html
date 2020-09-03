@@ -23,35 +23,49 @@
 
       <div class="table-responsive">
         <table class="table table-bordered">
-          <thead>
-          <tr class="th">
-              <th>用户名</th>
-              <th>邮箱</th>
-              <th>电话</th>
-              <th>状态</th>
-              <th>创建时间</th>
-              <th>类型</th>
-              <th>角色</th>
-              <th class="text-center">操作</th>
-          </tr>
-          </thead>
-          <tbody>
-            <% for(var i = 0; i < adminList.length; i++){ %>
-              <tr>
-                  <td><%=adminList[i].username%></td>
-                  <td><%=adminList[i].email%></td>
-                  <td><%=adminList[i].mobile%></td>
-                  <td><%=adminList[i].status%></td>
-                  <td><%=adminList[i].add_time%></td>
-                  <td><%=adminList[i].is_super%></td>
-                  <td><%=adminList[i].role[0].title%></td>
-                  <td class="text-center">
-                    修改
-                    删除
-                  </td>
+          <% if (adminList.length > 0) {%>
+            <thead>
+              <tr class="th">
+                  <th>用户名</th>
+                  <th>邮箱</th>
+                  <th>电话</th>
+                  <th>状态</th>
+                  <th>创建时间</th>
+                  <th>类型</th>
+                  <th>角色</th>
+                  <th class="text-center">操作</th>
               </tr>
-            <% } %>
-          </tbody>
+            </thead>
+            <tbody>
+              <% for(var i = 0; i < adminList.length; i++){ %>
+                <tr>
+                    <td><%=adminList[i].username%></td>
+                    <td><%=adminList[i].email%></td>
+                    <td><%=adminList[i].mobile%></td>
+                    <td><%=adminList[i].status%></td>
+                    <td><%=adminList[i].add_time%></td>
+                    <td>
+                      <% if (adminList[i].is_super === 0) { %>
+                        <span>超级管理员</span>
+                      <% } %>
+                      <% if (adminList[i].is_super === 1) { %>
+                        <span>管理员</span>
+                      <% } %>
+                      <% if (adminList[i].is_super === 2) { %>
+                        <span>一般用户</span>
+                      <% } %>
+                    </td>
+                    <td><%=adminList[i].role[0].title%></td>
+                    <td class="text-center">
+                      修改
+                      <a href='/admin/delete?model=Admin&id=<%=adminList[i]._id%>'>删除</a>
+                    </td>
+                </tr>
+              <% } %>
+            </tbody>
+          <% } else { %>
+            <div style="font-size: 14px;color: red;text-align: center;">暂时没有数据</div>
+          <% } %>
         </table>
       </div>
     </div>
