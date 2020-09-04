@@ -45,6 +45,52 @@ class RoleController extends BaseController {
   async delete() {
     this.ctx.body = `<h1>role delete....</h1>`
   }
+
+  async auth() {
+    const { roleId } = this.ctx.query
+    console.log(`---> role id: ${roleId}`)
+
+    const list = await this.ctx.model.Access.aggregate([
+      {
+        $lookup: {
+          from: 'access',
+          localField: '_id',
+          foreignField: 'module_id',
+          as: 'items',
+        }
+      },
+      {
+        $match: {
+          module_id: '0',
+        }
+      }
+    ])
+    console.log(list)
+
+    await this.ctx.render(`admin/role/auth`, {
+      roleId, list,
+    })
+  }
+
+  async doAuth() {
+    console.log(this.ctx.request.body)
+    const { role_id, access_node } = this.ctx.request.body
+
+    // 1. 先清除当前角色权限'
+    const roleId = this.app.mongoose.Types.ObjectId(role_id)
+    await this.ctx.model.RoleAccess.deleteMany({ role_id: roleId })
+
+    // 2. 保存选中权限
+    for (let i = 0; i < access_node.length; i++) {
+      const roleAccess = this.ctx.model.RoleAccess({
+        role_id,
+        access_id: access_node[i],
+      })
+      await roleAccess.save()
+    }
+
+    await this.success(`/admin/role/auth?roleId=${role_id}`, '授权成功')
+  }
 }
 
 module.exports = RoleController;
